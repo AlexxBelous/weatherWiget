@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import "./index.css";
 
+const KEY = "6683bf1f12284443afa113106260903";
+
 function App() {
   return (
     <div className="app">
