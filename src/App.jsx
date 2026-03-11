@@ -1,9 +1,14 @@
 import { useState, useEffect } from "react";
 import "./index.css";
 
-const KEY = "6683bf1f12284443afa113106260903";
+const KEY = "52c4d4f68f1447cdbe0160538261503";
 
 function App() {
+  const [city, setCity] = useState("");
+  const [weatherData, setWeatherData] = useState(null);
+  
+
+
   return (
     <div className="app">
       <div className="widget-container">
