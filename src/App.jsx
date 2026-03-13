@@ -1,12 +1,24 @@
 import { useState, useEffect } from "react";
 import "./index.css";
 
-const KEY = "6683bf1f12284443afa113106260903";
+const KEY = "52c4d4f68f1447cdbe0160538261503";
 
 function App() {
-  const [city, setCity] = useState("");
+  const [city, setCity] = useState("London");
   const [weatherData, setWeatherData] = useState(null);
-  
+
+  useEffect(() => {
+    async function getData() {
+      const res = await fetch(`http://api.weatherapi.com/v1/current.json?key=${KEY}&q=${city}`)
+      const data = await res.json();
+      setWeatherData(data);
+    }
+
+    getData();
+  }, []);
+
+  console.log(weatherData);
+
 
 
   return (
@@ -19,7 +31,7 @@ function App() {
           </div>
         </div>
         <div className="weather-card">
-          <h2>Moscow, Russia</h2>
+          <h2>{`${weatherData?.location.name}`}, {`${weatherData?.location.country}`}</h2>
           <img src="" alt="icon" className="weather-icon" />
           <p className="temperature">11°C</p>
           <p className="condition">rainy</p>
