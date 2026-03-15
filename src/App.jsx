@@ -4,7 +4,8 @@ import "./index.css";
 const KEY = "6683bf1f12284443afa113106260903";
 
 function App() {
-    const [city, setCity] = useState("London");
+    const [city, setCity] = useState("Kyiv");
+
     const [weatherData, setWeatherData] = useState(null);
     const [error, setError] = useState(null)
 
@@ -14,12 +15,16 @@ function App() {
             try {
                 const res = await fetch(`http://api.weatherapi.com/v1/current.json?key=${KEY}&q=${city}`);
                 const data = await res.json();
+
                 if (data.error) {
                     setError(data.error.message)
+                    setWeatherData(null)
+                    return;
                 }
 
                 setWeatherData(data);
-                setWeatherData(null)
+                setError(null)
+
 
             } catch (err) {
                 setError(err.message);
@@ -30,6 +35,9 @@ function App() {
 
         getData();
     }, []);
+    
+
+    console.log(weatherData);
 
 
     return (
